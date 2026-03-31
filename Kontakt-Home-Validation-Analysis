@@ -1,0 +1,9 @@
+# 🛒 Kontakt Home - Search Filter Validation Analysis
+
+### 📋 Layihə Haqqında
+Bu layihədə "Kontakt Home" platformasında qiymət filtrinin müxtəlif ssenarilər (Positive & Negative Testing) üçün nə dərəcədə hazırlıqlı olduğunu analiz etdim.
+
+### 🔍 Analiz Nəticəsi
+Sistemdə məntiqsiz rəqəmlər (məsələn: Min > Max) daxil edildikdə sistemin reaksiyasını yoxladım. 
+- **Müşahidə:** Platforma daxil edilən yanlış datanı avtomatik korreksiya edərək (Auto-correction) istifadəçini yanlış nəticədən qoruyur. 
+- **Nəticə:** Bu, sistemin həm Front-end, həm də Back-end səviyyəsində güclü validasiya mexanizmlərinə sahib olduğunu sübut edir.
