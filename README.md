@@ -1,26 +1,14 @@
-# 🛒 Kontakt Home - Price Filter Logic Bug Analysis
+ # 🛒 Kontakt Home - Search Filter Validation Analysis
 
-### 📋 Project Overview
-Bu layihə "Kontakt Home" e-ticarət platformasında tapılmış kritik bir məntiq xətasının (Business Logic Error) analizi və sənədləşdirilməsindən ibarətdir.
+### 📋 Layihə Haqqında
+Bu layihədə "Kontakt Home" platformasında qiymət filtrinin **Edge Case** (kənar hallar) üçün nə dərəcədə hazırlıqlı olduğunu test etdim.
 
-### 🕵️‍♂️ Bug Description
-**Issue:** Qiymət filtrində minimum məbləğin maksimumdan böyük daxil edilməsi zamanı sistemin heç bir xəbərdarlıq verməməsi.
+### 🔍 Analiz Nəticəsi
+Sistemdə "Min > Max" (Məs: 50,000 > 700) ssenarisini yoxladım. 
+- **Nəticə:** Sistem bu məntiqsiz girişi avtomatik tanıyır və daxil edilən rəqəmləri korreksiya edərək istifadəçini yanlış nəticədən qoruyur. 
+- **Qənaət:** Bu, platformanın **Data Integrity** (məlumat tamlığı) və **UX** (istifadəçi təcrübəsi) baxımından yüksək keyfiyyətli proqramlaşdırıldığını sübut edir.
 
-**Steps to Reproduce:**
-1. Kontakt.az saytına daxil ol.
-2. Hər hansı bir kateqoriyanı (məs: Telefonlar) seç.
-3. Filtr hissəsində "Min" xanasına `50000`, "Max" xanasına `700` yaz.
-4. "Göstər" və ya tətbiq et düyməsinə bas.
-
-**Expected Result:**
-Sistem daxil edilən rəqəmlərin məntiqsiz olduğunu anlamalı, istifadəçiyə xəta mesajı verməli və düyməni aktiv etməməlidir.
-
-**Actual Result:**
-Sistem məlumatı qəbul edir və nəticədə boş bir səhifə (və ya yanlış filtrasiya) göstərilir.
-
-### 🛡️ Suggested Solution (QA & BA Perspective)
-- **Front-end:** "Min > Max" halında düymə `disabled` (qeyri-aktiv) olmalıdır.
-- **Back-end:** API tərəfində daxil olan datanın validasiyası (sanitizing) təmin edilməlidir.
-
----
-*Status: Reported & Added to Regression Checklist*
+### ✅ Test Ssenariləri (Validation)
+1. **Min < Max:** Düzgün filtrləmə aparılır.
+2. **Min > Max:** Sistem avtomatik düzəliş edir (Auto-correct).
+3. **Mənfi qiymət:** Sistem girişi bloklayır.
